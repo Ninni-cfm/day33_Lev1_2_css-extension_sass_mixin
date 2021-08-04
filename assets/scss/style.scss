@@ -1,0 +1,150 @@
+// variables
+$blue1: rgba(0, 0, 255, 0.514);
+$blue2: rgba(0, 0, 255, 0.678);
+
+$margin-small: 0.5rem;
+$margin-medium: 1rem;
+$margin-large: 1.5rem;
+
+@mixin flex-col-nowrap-centered {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin flex-row-wrap {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+@mixin li-style {
+    padding: $margin-medium;
+    list-style: none;
+}
+@mixin a-tags {
+    text-decoration: none;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.header {
+    h1,
+    h2 {
+        font-size: 1rem;
+    }
+
+    height: 6rem;
+    text-align: center;
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+        "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    padding: $margin-large;
+}
+
+.nav {
+    .nav_links {
+        margin-top: $margin-medium;
+        display: flex;
+        justify-content: center;
+        margin-bottom: $margin-medium;
+        background-color: $blue1;
+
+        li {
+            @include li-style;
+        }
+
+        a {
+            @include a-tags();
+        }
+    }
+}
+
+.main {
+    @include flex-col-nowrap-centered();
+
+    .section_text > h3 {
+        text-align: center;
+    }
+
+    .section_text,
+    .section_images {
+        margin: $margin-medium;
+    }
+
+    .section_images {
+        @include flex-col-nowrap-centered();
+    }
+    img {
+        height: 12rem;
+        width: 18rem;
+        margin: 0 $margin-medium $margin-medium $margin-medium;
+    }
+}
+
+.aside {
+    @include flex-col-nowrap-centered();
+
+    // display: flex;
+    // flex-flow: column nowrap;
+    // justify-content: center;
+    // margin: $margin-medium;
+
+    .first_aside,
+    .second_aside,
+    .third_aside,
+    .fourth_aside {
+        border: 0.2rem solid $blue2;
+        padding: $margin-medium;
+        margin-bottom: $margin-medium;
+    }
+}
+
+.footer {
+    height: 5rem;
+    margin-top: $margin-medium;
+    background-color: $blue2;
+
+    .footer_links {
+        display: flex;
+        justify-content: center;
+        margin-bottom: $margin-medium;
+
+        li {
+            @include li-style;
+        }
+
+        a {
+            @include a-tags();
+        }
+    }
+}
+
+//****************************************************************************
+@media screen and (min-width: 600px) {
+    .section_images {
+        @include flex-row-wrap;
+    }
+
+    .section_text {
+        width: 70%;
+    }
+
+    .aside {
+        @include flex-row-wrap;
+
+        .first_aside,
+        .second_aside,
+        .third_aside,
+        .fourth_aside {
+            width: 45%;
+            margin: $margin-medium;
+        }
+    }
+}
